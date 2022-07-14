@@ -54,15 +54,15 @@ describe('Shoping-page', () => {
 
       it('Check results when step one of checkout have empty First Name/ Last Name and Zip code', () => {
         cy.addProduct()
-        cy.get('[data-test="checkout"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: First Name is required')
       })
 
-      it('Check results when step one of checkout have empty Last Name', () => {
+      it.only('Check results when step one of checkout have empty Last Name', () => {
         cy.addProduct()
         cy.get('[data-test="firstName"]').type('x')
         cy.get('[data-test="postalCode"]').type('d')
-        cy.get('[data-test="checkout"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: Last Name is required')
       })
 
@@ -70,7 +70,7 @@ describe('Shoping-page', () => {
         cy.addProduct()
         cy.get('[data-test="firstName"]').type(21)
         cy.get('[data-test="lastName"]').type(37)
-        cy.get('[data-test="checkout"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: Postal Code is required')
 
       })
@@ -91,7 +91,7 @@ describe('Shoping-page', () => {
 
       })
 
-      it.only('Check results when "back to home" buttos is clicked', () => {
+      it('Check results when "back to home" buttos is clicked', () => {
         cy.addProduct()
         cy.checkout('xd', '1234', '666')
         cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
