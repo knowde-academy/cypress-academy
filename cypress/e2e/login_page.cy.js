@@ -14,7 +14,6 @@ describe('Login Page', () => {
         cy.get('[data-test="username"]').type('invalid_user')
         cy.get('[data-test="password"]').type('secret_saucee')
         cy.get('[data-test="login-button"]').click()
-        cy.get('[data-test="error"]').should('exist')
         cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username and password do not match any user in this service')
 
     })
@@ -23,7 +22,6 @@ describe('Login Page', () => {
         cy.get('[data-test="username"]').type('locked_out_user')
         cy.get('[data-test="password"]').type('secret_sauce')
         cy.get('[data-test="login-button"]').click()
-        cy.get('[data-test="error"]').should('exist')
         cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Sorry, this user has been locked out.')
     })
 
@@ -36,7 +34,6 @@ describe('Login Page', () => {
 
     it('Test case T-05 (Check results when username and password is blank)', () => {
         cy.get('[data-test="login-button"]').click()
-        cy.get('[data-test="error"]').should('exist')
         cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username is required')
 
     })
