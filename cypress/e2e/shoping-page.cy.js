@@ -5,11 +5,12 @@ describe('Shoping-page', () => {
       
       it('T-01 (Check results when product name is clicked)', () => {
         cy.get('.inventory_item_name').last()
+        //TODO: CHECK URL AFTER CLICK PRODUCT NAME
       })
 
       it('T-02 (Check results when product image is clicked)', () => {
         cy.get('.inventory_item_img').first().click()
-        
+        //TODO: CHECK URL AFTER CLICK IMAGE
       })
 
       it('T-03 (Check "back to products" button)', () => {
@@ -18,8 +19,10 @@ describe('Shoping-page', () => {
         cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
       })
 
-      it('T-04 (Check results when products list sorted by name (A to Z))', () => {
+      it('T-04 (Check results when products list sorted by name (Z to A))', () => {
         cy.get('select[data-test="product_sort_container"]').select('za')
+        
+        //TODO: CHECK SORTING (Z to A), (A to Z), (High to low), (Low to high)
       })
 
       it('Check results when product is added to cart from list view', () => {
@@ -72,7 +75,6 @@ describe('Shoping-page', () => {
         cy.get('[data-test="lastName"]').type(37)
         cy.get('[data-test="checkout"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: Postal Code is required')
-
       })
 
       it('Check results when First Name Last Name and Zip code are filled correctly', () => {
@@ -88,10 +90,9 @@ describe('Shoping-page', () => {
         cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
         cy.get('[data-test="finish"]').click()
         cy.url().should('eq', 'https://www.saucedemo.com/checkout-complete.html')
-
       })
 
-      it.only('Check results when "back to home" buttos is clicked', () => {
+      it('Check results when "back to home" buttos is clicked', () => {
         cy.addProduct()
         cy.checkout('xd', '1234', '666')
         cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
@@ -99,7 +100,5 @@ describe('Shoping-page', () => {
         cy.get('[data-test="back-to-products"]').click()
         cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
       })
-
-    
 
 })
