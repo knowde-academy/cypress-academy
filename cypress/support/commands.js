@@ -23,3 +23,48 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username,password)=>{
+        cy.get('[data-test="username"]')
+        .type(username)
+        .get('[data-test="password"]')
+        .type(password)
+        .get('[data-test="login-button"]')
+        .click()
+}
+)
+
+Cypress.Commands.add('login_without_username', (password)=>{
+        cy.get('[data-test="password"]')
+        .type(password)
+        .get('[data-test="login-button"]')
+        .click()
+}
+)
+
+Cypress.Commands.add('login_without_password', (username)=>{
+        cy.get('[data-test="username"]')
+        .type(username)
+        .get('[data-test="login-button"]')
+        .click()
+}
+)
+
+Cypress.Commands.add('login_without_all', (username)=>{
+        cy.get('[data-test="login-button"]')
+        .click()
+}
+)
+
+
+// mierzenie czasu
+
+// cy.wrap(performance.now()).as('time');
+// cy.get('[data-test="login-button"]').click();
+// cy.wait(5000)
+// cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').should('be.visible');
+// cy.wrap(performance.now).then(now => {
+//     cy.get('@time').then(time => {
+//         console.log(now - time);
+//     })
+// })
