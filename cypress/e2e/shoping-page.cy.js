@@ -56,36 +56,36 @@ describe('Shoping-page', () => {
       })
 
       it('Check results when step one of checkout have empty First Name/ Last Name and Zip code', () => {
-        cy.addProduct()
-        cy.get('[data-test="checkout"]').click()
+        cy.addProduct(0)
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: First Name is required')
       })
 
       it('Check results when step one of checkout have empty Last Name', () => {
-        cy.addProduct()
+        cy.addProduct(0)
         cy.get('[data-test="firstName"]').type('x')
         cy.get('[data-test="postalCode"]').type('d')
-        cy.get('[data-test="checkout"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: Last Name is required')
       })
 
       it('Check results when step one of checkout have empty Postal Code', () => {
-        cy.addProduct()
+        cy.addProduct(1)
         cy.get('[data-test="firstName"]').type(21)
         cy.get('[data-test="lastName"]').type(37)
-        cy.get('[data-test="checkout"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: Postal Code is required')
       })
 
       it('Check results when First Name Last Name and Zip code are filled correctly', () => {
-        cy.addProduct()
+        cy.addProduct(2)
         cy.checkout('xd', '1234', '666')
         cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
         cy.url().should('eq', 'https://www.saucedemo.com/checkout-step-two.html')
       })
 
       it('Check results when finish button is clicked', () => {
-        cy.addProduct()
+        cy.addProduct(1)
         cy.checkout('xd', '1234', '666')
         cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
         cy.get('[data-test="finish"]').click()
@@ -93,7 +93,7 @@ describe('Shoping-page', () => {
       })
 
       it('Check results when "back to home" buttos is clicked', () => {
-        cy.addProduct()
+        cy.addProduct(1)
         cy.checkout('xd', '1234', '666')
         cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
         cy.get('[data-test="finish"]').click()
