@@ -53,5 +53,4 @@ describe("Navigation-tests", () => {
         cy.get('#logout_sidebar_link').click()
         cy.url().should('eq', 'https://www.saucedemo.com/')
     })
-
 })

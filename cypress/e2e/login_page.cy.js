@@ -7,7 +7,6 @@ describe('Login Page', () => {
         cy.get('[data-test="username"]').type('standard_user')
         cy.get('[data-test="password"]').type('secret_sauce')
         cy.get('[data-test="login-button"]').click()
-
     })
 
     it('Test case T-02 (Check results when not valid username and password is entered)', () => {
@@ -15,7 +14,6 @@ describe('Login Page', () => {
         cy.get('[data-test="password"]').type('secret_saucee')
         cy.get('[data-test="login-button"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username and password do not match any user in this service')
-
     })
 
     it('Test case T-03 (Check results when is entered blocked user username and password)', () => {
@@ -29,29 +27,23 @@ describe('Login Page', () => {
         cy.get('[data-test="username"]').type('performance_glitch_user')
         cy.get('[data-test="password"]').type('secret_sauce')
         cy.get('[data-test="login-button"]').click()
-
     })
 
     it('Test case T-05 (Check results when username and password is blank)', () => {
         cy.get('[data-test="login-button"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username is required')
-
     })
 
     it('Test case T-06 (Check results when password is blank)', () => {
         cy.get('[data-test="password"]').type('secret_sauce')
         cy.get('[data-test="login-button"]').click()
-        cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username is required')
-        
-
+        cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Username is required')     
     })
 
     it('Test case T-07 (Check results when username is blank)', () => {
         cy.get('[data-test="username"]').type('standard_user')
         cy.get('[data-test="login-button"]').click()
-        cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Password is required')
-        
-
+        cy.get('[data-test="error"]').should('have.text', 'Epic sadface: Password is required') 
     })
 
     it('Test case T-08 (Check results after closing information about wrong password)', () => {
