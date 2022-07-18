@@ -1,25 +1,18 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('login', (username, password) => { 
+    cy.visit('/')
+    cy.get('[data-test="username"]').type(username)
+    cy.get('[data-test="password"]').type(password)
+    cy.get('[data-test="login-button"]').click()
+})
+
+Cypress.Commands.add('addProduct', (index) => {
+    cy.get('[class="btn btn_primary btn_small btn_inventory"]').eq(index)
+    cy.get('[class="shopping_cart_link"]').click()
+    cy.get('[class="btn btn_action btn_medium checkout_button"]').click()
+})
+
+Cypress.Commands.add('checkout', (firstname, lastname, postalCode) => {
+    cy.get('[data-test="firstName"]').type(firstname)
+    cy.get('[data-test="lastName"]').type(lastname)
+    cy.get('[data-test="postalCode"]').type(postalCode)   
+})
