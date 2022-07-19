@@ -4,6 +4,7 @@ describe('Sort', () => {
     it ('Sort_name_A_to_Z',()=> {
 
         cy.login_standard()
+        cy.get('[class="active_option"]').should('contain','Name (A to Z)')
         cy.get('[class="inventory_item_name"]').first().should('contain', 'Sauce Labs Backpack').parent().should('have.attr', 'id', 'item_4_title_link')
         cy.get('[class="inventory_item_name"]').last().should('contain', 'Test.allTheThings() T-Shirt (Red)').parent().should('have.attr', 'id', 'item_3_title_link')
     })
@@ -13,6 +14,7 @@ describe('Sort', () => {
         
         cy.login_standard()
         cy.get('[data-test="product_sort_container"]').select(1)
+        cy.get('[class="active_option"]').should('contain','Name (Z to A)')
         cy.get('[class="inventory_item_name"]').first().should('contain', 'Test.allTheThings() T-Shirt (Red)').parent().should('have.attr', 'id', 'item_3_title_link')
         cy.get('[class="inventory_item_name"]').last().should('contain', 'Sauce Labs Backpack').parent().should('have.attr', 'id', 'item_4_title_link')
     })
@@ -22,6 +24,7 @@ describe('Sort', () => {
 
         cy.login_standard()
         cy.get('[data-test="product_sort_container"]').select(2)
+        cy.get('[class="active_option"]').should('contain','Price (low to high)')
         cy.get('[class="inventory_item_name"]').first().should('contain', 'Sauce Labs Onesie').parent().should('have.attr', 'id', 'item_2_title_link')
         cy.get('[class="inventory_item_name"]').last().should('contain', 'Sauce Labs Fleece Jacket').parent().should('have.attr', 'id', 'item_5_title_link')
     })
@@ -31,6 +34,7 @@ describe('Sort', () => {
 
         cy.login_standard()
         cy.get('[data-test="product_sort_container"]').select(3)
+        cy.get('[class="active_option"]').should('contain','Price (high to low)')
         cy.get('[class="inventory_item_name"]').first().should('contain', 'Sauce Labs Fleece Jacket').parent().should('have.attr', 'id', 'item_5_title_link')
         cy.get('[class="inventory_item_name"]').last().should('contain', 'Sauce Labs Onesie').parent().should('have.attr', 'id', 'item_2_title_link')
     })
