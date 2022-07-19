@@ -71,10 +71,91 @@ describe('Navigation', () => {
         .get('[data-test="error"]')
         .should('contain','Epic sadface: Username is required')
 
-        
+    })
+
+    it ('Cancel_button_order_checkout',()=> {
+
+        cy.login_standard()
+        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+        cy.get('[class="shopping_cart_link"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/cart.html')
+        cy.get('[data-test="checkout"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/checkout-step-one.html')
+        cy.get('[data-test="cancel"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/cart.html')
 
 
     })
 
 
+    it ('Cancel_button_order_summary',()=> {
+
+        cy.login_standard()
+        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+        cy.get('[class="shopping_cart_link"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/cart.html')
+
+        cy.get('[data-test="checkout"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/checkout-step-one.html')
+
+        cy.get('[data-test="firstName"]').type('Jan')
+        cy.get('[data-test="lastName"]').type('Kowalski')
+        cy.get('[data-test="postalCode"]').type('15-100')
+        cy.get('[data-test="continue"]').click()
+
+        cy.url().should('eq','https://www.saucedemo.com/checkout-step-two.html')
+
+        cy.get('[data-test="cancel"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+
+    })
+
+    it ('Back_to_home',()=> {
+
+        cy.login_standard()
+        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+        cy.get('[class="shopping_cart_link"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/cart.html')
+
+        cy.get('[data-test="checkout"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/checkout-step-one.html')
+
+        cy.get('[data-test="firstName"]').type('Jan')
+        cy.get('[data-test="lastName"]').type('Kowalski')
+        cy.get('[data-test="postalCode"]').type('15-100')
+        cy.get('[data-test="continue"]').click()
+
+        cy.url().should('eq','https://www.saucedemo.com/checkout-step-two.html')
+
+        cy.get('[data-test="finish"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/checkout-complete.html')
+
+        cy.get('[data-test="back-to-products"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        
+
+    })
+
+    it ('Go_to_products_details_from_summary',()=> {
+
+        cy.login_standard()
+        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+        cy.get('[class="shopping_cart_link"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/cart.html')
+
+        cy.get('[data-test="checkout"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/checkout-step-one.html')
+
+        cy.get('[data-test="firstName"]').type('Jan')
+        cy.get('[data-test="lastName"]').type('Kowalski')
+        cy.get('[data-test="postalCode"]').type('15-100')
+        cy.get('[data-test="continue"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/checkout-step-two.html')
+
+        cy.get('[id="item_4_title_link"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory-item.html?id=4')
+
+        cy.get('[class="inventory_details_name large_size"]').should('contain','Sauce Labs Backpack')
+
+    })
 })

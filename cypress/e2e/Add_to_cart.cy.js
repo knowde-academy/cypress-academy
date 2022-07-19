@@ -104,7 +104,12 @@ describe('Add_to_cart', () => {
         cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
 
         cy.get('[class="shopping_cart_link"]').click()
+        cy.url().should('eq', 'https://www.saucedemo.com/cart.html')
         cy.get('[id="item_4_title_link"]').should('exist').children().should('contain', 'Sauce Labs Backpack')
+        cy.get('[id="item_0_title_link"]').should('exist').children().should('contain', 'Sauce Labs Bike Light')
+
+        cy.get('[class="cart_quantity"]').eq(0).should('contain', '1')
+        cy.get('[class="cart_quantity"]').eq(1).should('contain', '1')
 
     })
 
