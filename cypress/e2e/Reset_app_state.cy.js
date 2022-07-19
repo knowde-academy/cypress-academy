@@ -8,9 +8,9 @@ describe('Reset_app_state', () => {
 
         cy.login_standard()
 
-        cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+        menu.add_item(4)
         menu.cart_badge().should('contain', '1')
-        cy.get('[data-test="remove-sauce-labs-backpack"]').should('contain','Remove')
+        menu.get_button_remove_cart(4)
 
         menu.expand_list_options('reset')
 
