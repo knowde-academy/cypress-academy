@@ -1,3 +1,7 @@
+import MainMenu from "../../cypress/PageObject/MainMenu";
+
+const menu= new MainMenu()
+
 describe('Order', () => {
     
 
@@ -129,7 +133,7 @@ describe('Order', () => {
 
 
         cy.get('[data-test="finish"]').click()
-        cy.get('[data-test="back-to-products"]').click()
+        menu.back_to_products()
         cy.get('[class="shopping_cart_badge"]').should('not.exist')
         cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').should('exist').should('contain','Add to cart')
         

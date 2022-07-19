@@ -1,3 +1,7 @@
+import MainMenu from "../../cypress/PageObject/MainMenu";
+
+const menu= new MainMenu()
+
 describe('Reset_app_state', () => {
 
     it ('Reset_app_state', ()=>{
@@ -5,16 +9,13 @@ describe('Reset_app_state', () => {
         cy.login_standard()
 
         cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
-        cy.get('[class="shopping_cart_badge"]').should('contain', '1')
+        menu.cart_badge().should('contain', '1')
         cy.get('[data-test="remove-sauce-labs-backpack"]').should('contain','Remove')
 
+        menu.expand_list_options('reset')
 
-        cy.get('[id="react-burger-menu-btn"]').click()
-        cy.get('[id="reset_sidebar_link"]').click()
-
-
-        cy.get('[class="shopping_cart_badge"]').should('not.exist')
-        cy.get('[class="shopping_cart_link"]').click()
+        menu.cart_badge().should('not.exist')
+        menu.go_cart()
         cy.get('[class="cart_item"]').should('not.exist')
         
         

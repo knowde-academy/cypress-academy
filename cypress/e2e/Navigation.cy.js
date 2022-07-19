@@ -1,3 +1,7 @@
+import MainMenu from "../../cypress/PageObject/MainMenu";
+
+const menu= new MainMenu()
+
 describe('Navigation', () => {
     
 
@@ -5,10 +9,10 @@ describe('Navigation', () => {
 
         cy.login_standard()
 
-        cy.get('[id="item_0_title_link"]').click()
+        menu.get_item_title_link('0').click()
         cy.url().should('eq','https://www.saucedemo.com/inventory-item.html?id=0')
-        cy.get('[data-test="back-to-products"]').click()
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.back_to_products()
+        menu.url_inventory_is_good()
 
     })
 
@@ -18,8 +22,8 @@ describe('Navigation', () => {
         
         cy.get('[id="item_1_img_link"]').click()
         cy.url().should('eq','https://www.saucedemo.com/inventory-item.html?id=1')
-        cy.get('[data-test="back-to-products"]').click()
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.back_to_products()
+        menu.url_inventory_is_good()
 
     })
 
@@ -31,7 +35,7 @@ describe('Navigation', () => {
         cy.url().should('eq','https://www.saucedemo.com/inventory-item.html?id=1')
         cy.get('[id="react-burger-menu-btn"]').click()
         cy.get('[id="inventory_sidebar_link"]').click()
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.url_inventory_is_good()
 
     })
 
@@ -42,7 +46,7 @@ describe('Navigation', () => {
         cy.get('[class="shopping_cart_link"]').click()
         cy.url().should('eq','https://www.saucedemo.com/cart.html')
         cy.get('[data-test="continue-shopping"]').click()
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.url_inventory_is_good()
 
     })
 
@@ -50,7 +54,7 @@ describe('Navigation', () => {
 
         cy.login_standard()
 
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.url_inventory_is_good()
         cy.get('[id="react-burger-menu-btn"]').click()
         cy.get('[id="about_sidebar_link"]').click()
         cy.url().should('eq','https://saucelabs.com/')
@@ -63,7 +67,7 @@ describe('Navigation', () => {
 
         cy.login_standard()
 
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.url_inventory_is_good()
         cy.get('[id="react-burger-menu-btn"]').click()
         cy.get('[id="logout_sidebar_link"]').click()
         cy.url().should('eq','https://www.saucedemo.com/')
@@ -106,7 +110,7 @@ describe('Navigation', () => {
         cy.url().should('eq','https://www.saucedemo.com/checkout-step-two.html')
 
         cy.get('[data-test="cancel"]').click()
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.url_inventory_is_good()
 
     })
 
@@ -130,8 +134,8 @@ describe('Navigation', () => {
         cy.get('[data-test="finish"]').click()
         cy.url().should('eq','https://www.saucedemo.com/checkout-complete.html')
 
-        cy.get('[data-test="back-to-products"]').click()
-        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        menu.back_to_products()
+        menu.url_inventory_is_good()
         
 
     })
