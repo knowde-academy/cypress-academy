@@ -56,6 +56,18 @@ Cypress.Commands.add('login_without_all', (username)=>{
 }
 )
 
+Cypress.Commands.add('login_standard', ()=>{
+
+        cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
+        cy.get('[data-test="username"]')
+        .type('standard_user')
+        .get('[data-test="password"]')
+        .type('secret_sauce')
+        .get('[data-test="login-button"]')
+        .click()
+}
+)
+
 
 // mierzenie czasu
 

@@ -23,67 +23,22 @@ const users=[{
 /////////////////////////////////////////////////////////////////////////////////////
 const users_wrong_pass_or_username=[
 {
-    username:"userqwe1",
-    password:"secret_sauce"
-},
-{
-    username:"standard_user",
-    password:"1234as"
-},
-{
-    username:"user1234",
-    password:"user1234"
-},
-{
-    username:"1234",
-    password:"1234"
-},
-{
-    username:"user",
-    password:"user"
-},
-{
-    username:"#$%@",
-    password:"#$%@"
-},
-{
     username:"user1234#$%@",
-    password:"user1234#$%@"
+    password:"password1234#$%@"
 }]
 
 
 /////////////////////////////////////////////////////////////////////////////////////
 
-const users_without_username=[{
-    password:"1234"
-},
+const users_without_username=[
 {
     password:"user"
-},
-{
-    password:"user1234"
-},
-{
-    password:"#$%@"
-},
-{
-    password:"user1234#$%@"
-}]
+}
+]
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-const users_without_password=[{
-    username:"1234"
-},
-{
-    username:"user"
-},
-{
-    username:"user1234"
-},
-{
-    username:"#$%@"
-},
+const users_without_password=[
 {
     username:"user1234#$%@"
 }]
@@ -99,7 +54,7 @@ describe('login', () => {
 
               if (user.username==='locked_out_user') {
                 cy.get('[data-test="error"]')
-                .contains( "Epic sadface: Sorry, this user has been locked out.")
+                .should('contain', "Epic sadface: Sorry, this user has been locked out.")
               }
               else {
               cy.url()
@@ -113,7 +68,7 @@ describe('login', () => {
                 cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
                 cy.login(user.username, user.password)
                 cy.get('[data-test="error"]')
-                .contains('Epic sadface: Username and password do not match any user in this service')
+                .should('contain','Epic sadface: Username and password do not match any user in this service')
             })
         })
 
@@ -122,7 +77,7 @@ describe('login', () => {
                 cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
                 cy.login_without_username(user.password)
                 .get('[data-test="error"]')
-                .contains('Epic sadface: Username is required')
+                .should('contain','Epic sadface: Username is required')
             })
         })
 
@@ -131,7 +86,7 @@ describe('login', () => {
                 cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
                 cy.login_without_password(user.username)
                 .get('[data-test="error"]')
-                .contains('Epic sadface: Password is required')
+                .should('contain','Epic sadface: Password is required')
             })
         })
 
@@ -139,58 +94,10 @@ describe('login', () => {
             cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
             cy.login_without_all()
             .get('[data-test="error"]')
-            .contains('Epic sadface: Username is required')
+            .should('contain','Epic sadface: Username is required')
         })
     })
 
 
-
-
-
-
-        // it ('empty_username', ()=>{
-        //     cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
-        //     cy.login_without_username('user')
-        //     .get('[data-test="error"]')
-        //     .contains('Epic sadface: Username is required')
-        // })
-
-        // it ('empty_password', ()=>{
-        //     cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
-        //     cy.login_without_password('1234')
-        //     .get('[data-test="error"]')
-        //     .contains('Epic sadface: Password is required')
-        // })
-    
-
-    
-
-
-    // it ('login_standard', () => {
-    //   cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
-    //   cy.login('standard_user','secret_sauce')
-    //     .get('[data-test="login-button"]')
-    //     .click()
-    //     .url()
-    //     .should('eq', 'https://www.saucedemo.com/inventory.html')
-    // })
-    // it ('login_block', ()=>{
-    //     cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
-    //     cy.login('locked_out_user', 'secret_sauce')
-    //     .get('[data-test="login-button"]')
-    //     .click()
-    //     .url()
-    //     .should('eq', 'https://www.saucedemo.com/')
-    // })
-
-    // it ('login_problem', ()=>{
-    //     cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
-    //     cy.login('problem_user', 'secret_sauce')
-    //     .get('[data-test="login-button"]')
-    //     .click()
-    //     .url()
-    //     .should('eq', 'https://www.saucedemo.com/inventory.html')
-    //     .get('[alt="Sauce Labs Backpack"]').should('be.visible').and('have.attr', 'src', '/static/media/sl-404.168b1cce.jpg')
-    // })
 
    

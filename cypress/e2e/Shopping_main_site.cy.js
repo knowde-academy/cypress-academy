@@ -1,95 +1,181 @@
-describe('shopping_main_site', () => {
+const Data_test = {
+        item_3: {
+                name: 'Test.allTheThings() T-Shirt (Red)',
+                url:'https://www.saucedemo.com/inventory-item.html?id=3',
+                src_img: '/static/media/red-tatt-1200x1500.e32b4ef9.jpg'
+        },
+        item_2: {
+                name: 'Sauce Labs Onesie',
+                url:'https://www.saucedemo.com/inventory-item.html?id=2',
+                src_img: '/static/media/red-onesie-1200x1500.1b15e1fa.jpg'
+        },
+        item_5: {
+                name: 'Sauce Labs Fleece Jacket',
+                url:'https://www.saucedemo.com/inventory-item.html?id=5',
+                src_img: '/static/media/sauce-pullover-1200x1500.439fc934.jpg'
+        },
+        item_1: {
+                name: 'Sauce Labs Bolt T-Shirt',
+                url:'https://www.saucedemo.com/inventory-item.html?id=1',
+                src_img: '/static/media/bolt-shirt-1200x1500.c0dae290.jpg'
+        },
+        item_0: {
+                name: 'Sauce Labs Bike Light',
+                url:'https://www.saucedemo.com/inventory-item.html?id=0',
+                src_img: '/static/media/bike-light-1200x1500.a0c9caae.jpg'
+        },
+        item_4: {
+                name: 'Sauce Labs Backpack',
+                url:'https://www.saucedemo.com/inventory-item.html?id=4',
+                src_img: '/static/media/sauce-backpack-1200x1500.34e7aa42.jpg'
+        },
+
+}
+
+
+
+
+describe('shopping_main_site_go_to_details', () => {
     
-    
-    it ('go_to_details_by_name',()=> {
 
+        it ('go_to_details_by_name_3',()=> {
 
+        cy.login_standard()
 
-        cy.visit('/').url().should('eq', 'https://www.saucedemo.com/')
-        cy.login('standard_user', 'secret_sauce')
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        const go_to_3=cy.get('[id="item_3_title_link"]')
-        const name_item_3='Test.allTheThings() T-Shirt (Red)'
-        const url_of_item_3='https://www.saucedemo.com/inventory-item.html?id=3'
-
-        go_to_3
-        .contains(name_item_3)
-        go_to_3.click()
-        .url().should('eq', url_of_item_3)
-        cy.get('[class="inventory_details_name large_size"]').contains(name_item_3)
-        .go('back')
+        cy.get('[id="item_3_title_link"]').should('contain',Data_test.item_3.name)
+        cy.get('[id="item_3_title_link"]').click()
+        .url().should('eq', Data_test.item_3.url)
+        cy.get('[class="inventory_details_name large_size"]').should('contain',Data_test.item_3.name)
+    })
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const go_to_2=cy.get('[id="item_2_title_link"]')
-        const name_item_2='Sauce Labs Onesie'
-        const url_of_item_2='https://www.saucedemo.com/inventory-item.html?id=2'
+        it ('go_to_details_by_name_2',()=> {
 
-        go_to_2
-        .contains(name_item_2)
-        go_to_2.click()
-        .url().should('eq', url_of_item_2)
-        cy.get('[class="inventory_details_name large_size"]').contains(name_item_2)
-        .go('back')
+        cy.login_standard()
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        const go_to_5=cy.get('[id="item_5_title_link"]')
-        const name_item_5='Sauce Labs Fleece Jacket'
-        const url_of_item_5='https://www.saucedemo.com/inventory-item.html?id=5'
-
-        go_to_5
-        .contains(name_item_5)
-        go_to_5.click()
-        .url().should('eq', url_of_item_5)
-        cy.get('[class="inventory_details_name large_size"]').contains(name_item_5)
-        .go('back')
+        cy.get('[id="item_2_title_link"]').should('contain',Data_test.item_2.name)
+        cy.get('[id="item_2_title_link"]').click()
+        .url().should('eq', Data_test.item_2.url)
+        cy.get('[class="inventory_details_name large_size"]').should('contain',Data_test.item_2.name)
+        })
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_name_5',()=> {
+                
+        cy.login_standard()
 
-        const go_to_1=cy.get('[id="item_1_title_link"]')
-        const name_item_1='Sauce Labs Bolt T-Shirt'
-        const url_of_item_1='https://www.saucedemo.com/inventory-item.html?id=1'
+        cy.get('[id="item_5_title_link"]').should('contain',Data_test.item_5.name)
+        cy.get('[id="item_5_title_link"]').click()
+        .url().should('eq', Data_test.item_5.url)
+        cy.get('[class="inventory_details_name large_size"]').should('contain',Data_test.item_5.name)
+        })
 
-        go_to_1
-        .contains(name_item_1)
-        go_to_1.click()
-        .url().should('eq', url_of_item_1)
-        cy.get('[class="inventory_details_name large_size"]').contains(name_item_1)
-        .go('back')
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_name_1',()=> {
+
+        cy.login_standard()
+
+        cy.get('[id="item_1_title_link"]').should('contain',Data_test.item_1.name)
+        cy.get('[id="item_1_title_link"]').click()
+        .url().should('eq', Data_test.item_1.url)
+        cy.get('[class="inventory_details_name large_size"]').should('contain',Data_test.item_1.name)
+        })
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_name_0',()=> {
 
-        const go_to_0=cy.get('[id="item_0_title_link"]')
-        const name_item_0='Sauce Labs Bike Light'
-        const url_of_item_0='https://www.saucedemo.com/inventory-item.html?id=0'
+        cy.login_standard()
 
-        go_to_0
-        .contains(name_item_0)
-        go_to_0.click()
-        .url().should('eq', url_of_item_0)
-        cy.get('[class="inventory_details_name large_size"]').contains(name_item_0)
-        .go('back')
+        cy.get('[id="item_0_title_link"]').should('contain',Data_test.item_0.name)
+        cy.get('[id="item_0_title_link"]').click()
+        .url().should('eq', Data_test.item_0.url)
+        cy.get('[class="inventory_details_name large_size"]').should('contain',Data_test.item_0.name)
+        })
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_name_4',()=> {
 
-        const go_to_4=cy.get('[id="item_4_title_link"]')
         const name_item_4='Sauce Labs Backpack'
         const url_of_item_4='https://www.saucedemo.com/inventory-item.html?id=4'
 
-        go_to_4
-        .contains(name_item_4)
-        go_to_4.click()
-        .url().should('eq', url_of_item_4)
-        cy.get('[class="inventory_details_name large_size"]').contains(name_item_4)
-        .go('back')
+        cy.login_standard()
 
-    })
+        cy.get('[id="item_4_title_link"]').should('contain',Data_test.item_4.name)
+        cy.get('[id="item_4_title_link"]').click()
+        .url().should('eq', Data_test.item_4.url)
+        cy.get('[class="inventory_details_name large_size"]').should('contain',Data_test.item_4.name)
+        })
 
 
-    it ('go_to_details_by_image',()=> {
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////TEST_IMAGES//////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    })
+    it ('go_to_details_by_image_4',()=> {
+        
+        cy.login_standard()
+
+        cy.get('[id="item_4_img_link"]').children().should('have.attr', 'src').should('include',Data_test.item_4.src_img)
+        cy.get('[id="item_4_img_link"]').click()
+        .url().should('eq', Data_test.item_4.url)
+        cy.get('[class="inventory_details_img_container"]').children().should('have.attr', 'src').should('include',Data_test.item_4.src_img)
+        })
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_image_0',()=> {
+
+
+        cy.login_standard()
+
+        cy.get('[id="item_0_img_link"]').children().should('have.attr', 'src').should('include',Data_test.item_0.src_img)
+        cy.get('[id="item_0_img_link"]').click()
+        .url().should('eq', Data_test.item_0.url)
+        cy.get('[class="inventory_details_img_container"]').children().should('have.attr', 'src').should('include',Data_test.item_0.src_img)
+        })
+        
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_image_1',()=> {
+
+        cy.login_standard()
+
+        cy.get('[id="item_1_img_link"]').children().should('have.attr', 'src').should('include',Data_test.item_1.src_img)
+        cy.get('[id="item_1_img_link"]').click()
+        .url().should('eq', Data_test.item_1.url)
+        cy.get('[class="inventory_details_img_container"]').children().should('have.attr', 'src').should('include',Data_test.item_1.src_img)
+        })
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_image_5',()=> {
+
+        cy.login_standard()
+
+        cy.get('[id="item_5_img_link"]').children().should('have.attr', 'src').should('include',Data_test.item_5.src_img)
+        cy.get('[id="item_5_img_link"]').click()
+        .url().should('eq', Data_test.item_5.url)
+        cy.get('[class="inventory_details_img_container"]').children().should('have.attr', 'src').should('include',Data_test.item_5.src_img)
+        })
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_image_2',()=> {
+
+        cy.login_standard()
+
+        cy.get('[id="item_2_img_link"]').children().should('have.attr', 'src').should('include',Data_test.item_2.src_img)
+        cy.get('[id="item_2_img_link"]').click()
+        .url().should('eq', Data_test.item_2.url)
+        cy.get('[class="inventory_details_img_container"]').children().should('have.attr', 'src').should('include',Data_test.item_2.src_img)
+        })
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+        it ('go_to_details_by_image_3',()=> {
+
+        cy.login_standard()
+
+        cy.get('[id="item_3_img_link"]').children().should('have.attr', 'src').should('include',Data_test.item_3.src_img)
+        cy.get('[id="item_3_img_link"]').click()
+        .url().should('eq', Data_test.item_3.url)
+        cy.get('[class="inventory_details_img_container"]').children().should('have.attr', 'src').should('include',Data_test.item_3.src_img)
+        })
+
 })

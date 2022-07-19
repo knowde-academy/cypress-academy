@@ -1,0 +1,80 @@
+describe('Navigation', () => {
+    
+
+    it ('Back_to_products_by_name',()=> {
+
+        cy.login_standard()
+
+        cy.get('[id="item_0_title_link"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory-item.html?id=0')
+        cy.get('[data-test="back-to-products"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+
+    })
+
+    it ('Back_to_products_by_image',()=> {
+
+        cy.login_standard()
+        
+        cy.get('[id="item_1_img_link"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory-item.html?id=1')
+        cy.get('[data-test="back-to-products"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+
+    })
+
+    it ('All_items_go_back',()=> {
+
+        cy.login_standard()
+        
+        cy.get('[id="item_1_img_link"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory-item.html?id=1')
+        cy.get('[id="react-burger-menu-btn"]').click()
+        cy.get('[id="inventory_sidebar_link"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+
+    })
+
+    it ('Back_from_cart',()=> {
+
+        cy.login_standard()
+        
+        cy.get('[class="shopping_cart_link"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/cart.html')
+        cy.get('[data-test="continue-shopping"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+
+    })
+
+    it ('About',()=> {
+
+        cy.login_standard()
+
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        cy.get('[id="react-burger-menu-btn"]').click()
+        cy.get('[id="about_sidebar_link"]').click()
+        cy.url().should('eq','https://saucelabs.com/')
+        
+
+
+    })
+
+    it ('Logout',()=> {
+
+        cy.login_standard()
+
+        cy.url().should('eq','https://www.saucedemo.com/inventory.html')
+        cy.get('[id="react-burger-menu-btn"]').click()
+        cy.get('[id="logout_sidebar_link"]').click()
+        cy.url().should('eq','https://www.saucedemo.com/')
+        cy.login_without_all()
+        .get('[data-test="error"]')
+        .should('contain','Epic sadface: Username is required')
+
+        
+
+
+    })
+
+
+})
