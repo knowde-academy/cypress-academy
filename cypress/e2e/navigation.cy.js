@@ -4,7 +4,7 @@ describe("Navigation", () => {
     cy.get('[data-test="username"]').type("standard_user");
     cy.get('[data-test="password"]').type("secret_sauce");
     cy.get('[data-test="login-button"]').click();
-    cy.getCookie("session-username");
+    cy.getCookie("session-username").should("exist");
   });
 
   it("Resetting the app state", () => {
@@ -14,7 +14,7 @@ describe("Navigation", () => {
     cy.get(".shopping_cart_badge").should("not.exist");
   });
 
-  it("Left sidebar", () => {
+  it.only("Left sidebar", () => {
     cy.get("#react-burger-menu-btn").click();
     cy.get("#about_sidebar_link").should(
       "have.attr",
