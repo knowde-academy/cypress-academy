@@ -6,7 +6,7 @@ describe("Authentication", () => {
     cy.get('[data-test="username"]').type("standard_user");
     cy.get('[data-test="password"]').type("secret_sauce");
     cy.get('[data-test="login-button"]').click();
-    cy.getCookie("standard_user");
+    cy.getCookie("standard_user").should("exist");
   });
 
   it("Login with locked out user", () => {
@@ -16,20 +16,20 @@ describe("Authentication", () => {
     cy.get('[data-test="error"]')
       .contains("Epic sadface: Sorry, this user has been locked out.")
       .should("be.visible");
-    cy.getCookie("locked_out_user");
+    cy.getCookie("locked_out_user").should("not.exist");
   });
 
   it("Login with problem user", () => {
     cy.get('[data-test="username"]').type("problem_user");
     cy.get('[data-test="password"]').type("secret_sauce");
     cy.get('[data-test="login-button"]').click();
-    cy.getCookie("problem_user");
+    cy.getCookie("problem_user").should("exist");
   });
 
   it("Login with performance glitch user", () => {
     cy.get('[data-test="username"]').type("performance_glitch_user");
     cy.get('[data-test="password"]').type("secret_sauce");
-    cy.getCookie("performance_glitch_user");
+    cy.getCookie("performance_glitch_user").should("exist");
   });
 
   it("Fields have not beeen completed", () => {
