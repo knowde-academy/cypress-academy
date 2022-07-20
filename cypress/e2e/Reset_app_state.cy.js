@@ -1,4 +1,5 @@
 import MainMenu from "../../cypress/PageObject/MainMenu";
+import { Data_test } from "../Datatest";
 
 const menu= new MainMenu()
 
@@ -8,9 +9,9 @@ describe('Reset_app_state', () => {
 
         cy.login_standard()
 
-        menu.add_item(4)
-        menu.cart_badge().should('contain', '1')
-        menu.get_button_remove_cart(4)
+        menu.add_item(Data_test.item_4.add)
+        .cart_badge().should('contain', '1')
+        menu.get_button_remove_cart(Data_test.item_4.remove)
 
         menu.expand_list_options('reset')
 

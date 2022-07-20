@@ -22,11 +22,13 @@ class MainMenu {
     go_item(number){
         this.get_item_title_link(number).click()
         this.check_item_url(number)
+        return this
     }
 
     go_item_by_img(number){
         this.get_item_img(number).click()
         this.check_item_url(number)
+        return this
     }
 
     expand_list_options(option){
@@ -48,8 +50,8 @@ class MainMenu {
     }
 
     go_cart(){
-         return cy.get('[class="shopping_cart_link"]').click()
-                  .url().should('eq', 'https://www.saucedemo.com/cart.html')
+        return cy.get('[class="shopping_cart_link"]').click()
+                .url().should('eq', 'https://www.saucedemo.com/cart.html')
     }
 
     cart_badge(){
@@ -77,167 +79,72 @@ class MainMenu {
         return cy.url().should('eq','https://www.saucedemo.com/inventory.html')
     }
 
-    check_img(number){
+    check_img(number,src_img){
 
-        if(number===3){
-        this.get_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_3.src_img)
-        }
-        else if(number===2){
-        this.get_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_2.src_img)
-        }
-        else if(number===4){
-        this.get_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_4.src_img)
-        }
-        else if(number===1){
-        this.get_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_1.src_img)
-        }
-        else if(number===0){
-        this.get_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_0.src_img)
-        }
-        else if(number===5){
-        this.get_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_5.src_img)
-        }
+        this.get_item_img(number).children().should('have.attr', 'src').should('include',src_img)
+        return this
     }
 
-    check_img_in_details(number){
-
-        if(number===3){
-            this.details_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_3.src_img)
-        }
-        else if(number===2){
-            this.details_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_2.src_img)
-        }
-        else if(number===4){
-            this.details_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_4.src_img)
-        }
-        else if(number===1){
-            this.details_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_1.src_img)
-        }
-        else if(number===0){
-            this.details_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_0.src_img)
-        }
-        else if(number===5){
-            this.details_item_img(number).children().should('have.attr', 'src').should('include',Data_test.item_5.src_img)
-        }
+    check_img_in_details(number,src_img){
+        
+        this.details_item_img(number).children().should('have.attr', 'src').should('include',src_img)
+        return this
     }
 
-    check_title(number){
+    check_title(number,name){
 
-        if(number===3){
-            this.get_item_title_link(number).should('contain',Data_test.item_3.name)
-            }
-        else if(number===2){
-            this.get_item_title_link(number).should('contain',Data_test.item_2.name)
-        }
-        else if(number===4){
-            this.get_item_title_link(number).should('contain',Data_test.item_4.name)
-        }
-        else if(number===1){
-            this.get_item_title_link(number).should('contain',Data_test.item_1.name)
-        }
-        else if(number===0){
-            this.get_item_title_link(number).should('contain',Data_test.item_0.name)
-        }
-        else if(number===5){
-            this.get_item_title_link(number).should('contain',Data_test.item_5.name)
-        }
+        this.get_item_title_link(number).should('contain',name)
+        return this
+        
     }
 
-    check_title_in_details(number){
-
-            if(number===3){
-                this.details_item_name().should('contain',Data_test.item_3.name)
-            }
-            else if(number===2){
-                this.details_item_name().should('contain',Data_test.item_2.name)
-            }
-            else if(number===4){
-                this.details_item_name().should('contain',Data_test.item_4.name)
-            }
-            else if(number===1){
-                this.details_item_name().should('contain',Data_test.item_1.name)
-            }
-            else if(number===0){
-                this.details_item_name().should('contain',Data_test.item_0.name)
-            }
-            else if(number===5){
-                this.details_item_name().should('contain',Data_test.item_5.name)
-            }
+    check_title_in_details(name){
+        this.details_item_name().should('contain',name)
+        return this
+           
     }
 
     check_item_url(number){
         if(number===3){
-            cy.url().should('eq', Data_test.item_3.url)
+            return cy.url().should('eq', Data_test.item_3.url)
         }
         else if(number===2){
-            cy.url().should('eq', Data_test.item_2.url)
+            return cy.url().should('eq', Data_test.item_2.url)
         }
         else if(number===4){
-            cy.url().should('eq', Data_test.item_4.url)
+            return cy.url().should('eq', Data_test.item_4.url)
         }
         else if(number===1){
-            cy.url().should('eq', Data_test.item_1.url)
+            return cy.url().should('eq', Data_test.item_1.url)
         }
         else if(number===0){
-            cy.url().should('eq', Data_test.item_0.url)
+            return cy.url().should('eq', Data_test.item_0.url)
         }
         else if(number===5){
-            cy.url().should('eq', Data_test.item_5.url)
+            return cy.url().should('eq', Data_test.item_5.url)
         }
 
     }
 
-    get_button_add_cart(nr){
-        if(nr===4)
-            return cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').should('contain','Add to cart')
-
-        else if(nr===0){
-            return cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').should('contain','Add to cart')
-        }
-        else if(nr===1){
-            return cy.get('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').should('contain','Add to cart')
-        }
-        else if(nr===5){
-            return cy.get('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').should('contain','Add to cart')
-        }
-        else if(nr===2){
-            return cy.get('[data-test="add-to-cart-sauce-labs-onesie"]').should('contain','Add to cart')
-        }
-        else if(nr===3){
-            return cy.get('[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]').should('contain','Add to cart')
-        }
+    get_button_add_cart(add){
+        return cy.get(add).should('contain','Add to cart')
 
     }
 
     add_item(number){
         this.get_button_add_cart(number).click()
+        return this
 
     }
 
-    get_button_remove_cart(nr){
-        if(nr===4)
-            return cy.get('[data-test="remove-sauce-labs-backpack"]').should('contain','Remove')
-
-        else if(nr===0){
-            return cy.get('[data-test="remove-sauce-labs-bike-light"]').should('contain','Remove')
-        }
-        else if(nr===1){
-            return cy.get('[data-test="remove-sauce-labs-bolt-t-shirt"]').should('contain','Remove')
-        }
-        else if(nr===5){
-            return cy.get('[data-test="remove-sauce-labs-fleece-jacket"]').should('contain','Remove')
-        }
-        else if(nr===2){
-            return cy.get('[data-test="remove-sauce-labs-onesie"]').should('contain','Remove')
-        }
-        else if(nr===3){
-            return cy.get('[data-test="remove-test.allthethings()-t-shirt-(red)"]').should('contain','Remove')
-        }
+    get_button_remove_cart(remove){
+        return cy.get(remove).should('contain','Remove')
 
     }
 
     remove_item(number){
         this.get_button_remove_cart(number).click()
+        return this
 
     }
 }

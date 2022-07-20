@@ -1,7 +1,8 @@
 import MainMenu from "../../cypress/PageObject/MainMenu";
-import {img_numbers_board} from "../../cypress/Datatest"
+import {Data_test} from "../../cypress/Datatest"
 
 const menu= new MainMenu()
+const elements=Object.values(Data_test);
 
 
 
@@ -9,27 +10,27 @@ const menu= new MainMenu()
 describe('shopping_main_site_go_to_details', () => {
     
 
-        img_numbers_board.forEach((nr)=>{
+        elements.forEach((item)=>{
 
-        it ('go_to_details_by_name_'+nr,()=> {
+        it ('go_to_details_by_name_'+item.number,()=> {
 
         cy.login_standard()
 
-        menu.check_title(nr)
-        menu.go_item(nr)
-        menu.check_title_in_details(nr)
+        menu.check_title(item.number,item.name)
+        .go_item(item.number)
+        .check_title_in_details(item.name)
     })
 })
 
-        img_numbers_board.forEach((nr)=>{
+        elements.forEach((item)=>{
 
-        it ('go_to_details_by_image_'+nr,()=> {
+        it ('go_to_details_by_image_'+item.number,()=> {
 
         cy.login_standard()
 
-        menu.check_img(nr)
-        menu.go_item_by_img(nr)
-        menu.check_img_in_details(nr)
+        menu.check_img(item.number,item.src_img)
+        .go_item_by_img(item.number)
+        .check_img_in_details(item.number,item.src_img)
         })
         })
 
