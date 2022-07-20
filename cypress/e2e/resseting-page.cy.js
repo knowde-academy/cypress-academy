@@ -16,7 +16,6 @@ describe('resseting-page', () => {
         cy.get('[data-test="product_sort_container"]').select('za')
         cy.get('[id="react-burger-menu-btn"]').click()
         cy.get('[id="reset_sidebar_link"]').click()
-        cy.get('[data-test="product_sort_container"]')
         cy.get('.inventory_item_name').first().should('have.text', 'Sauce Labs Backpack') 
       })  
 })

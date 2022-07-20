@@ -15,9 +15,7 @@ describe('Shoping-page', () => {
       it('T-02 (Check results when product image is clicked)', () => {
         cy.get('.inventory_item_img').eq(1).parent('a').then((link)=>{
           const linkjpg = link[0].id
-          console.log(linkjpg)
           const id = linkjpg.match(/\d/)[0]
-          console.log(id)
           cy.get('.inventory_item_img').eq(1).click()
           cy.url().should('eq', `https://www.saucedemo.com/inventory-item.html?id=${id}`)
         })
@@ -57,7 +55,6 @@ describe('Shoping-page', () => {
         cy.get('.inventory_item_price').then((price)=> {
           price.toArray().forEach((element, index)=> {
             if (index + 1 !== price.length) {
-              console.log((element.outerText.replace('$', '')), '<=', (price[index + 1].outerText.replace('$', '')))
               expect(parseFloat(element.outerText.replace('$', '')) <= parseFloat(price[index + 1].outerText.replace('$', ''))).to.be.true
             }
           })
@@ -69,7 +66,6 @@ describe('Shoping-page', () => {
         cy.get('.inventory_item_price').then((price)=> {
           price.toArray().forEach((element, index)=> {
             if (index + 1 !== price.length) {
-              console.log((element.outerText.replace('$', '')), '>=', (price[index +1].outerText.replace('$', '')))
               expect(parseFloat(element.outerText.replace('$', '')) >= parseFloat(price[index + 1].outerText.replace('$', ''))).to.be.true
             }
           })
@@ -114,8 +110,8 @@ describe('Shoping-page', () => {
 
       it('T-13 (Check results when step one of checkout have empty Last Name)', () => {
         cy.addProduct(0)
-        cy.get('[data-test="firstName"]').type('x')
-        cy.get('[data-test="postalCode"]').type('d')
+        cy.get('[data-test="firstName"]').type('21')
+        cy.get('[data-test="postalCode"]').type('37')
         cy.get('[data-test="continue"]').click()
         cy.get('[data-test="error"]').should('have.text', 'Error: Last Name is required')
       })
@@ -131,22 +127,22 @@ describe('Shoping-page', () => {
       it('T-15 (Check results when First Name Last Name and Zip code are filled correctly)', () => {
         cy.addProduct(2)
         cy.checkout('xd', '1234', '666')
-        cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.url().should('eq', 'https://www.saucedemo.com/checkout-step-two.html')
       })
 
       it('T-16 (Check results when finish button is clicked)', () => {
         cy.addProduct(1)
         cy.checkout('xd', '1234', '666')
-        cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="finish"]').click()
         cy.url().should('eq', 'https://www.saucedemo.com/checkout-complete.html')
       })
 
-      it('T-15 (Check results when "back to home" buttos is clicked)', () => {
+      it.only('T-17 (Check results when "back to home" buttos is clicked)', () => {
         cy.addProduct(1)
         cy.checkout('xd', '1234', '666')
-        cy.get('[class="submit-button btn btn_primary cart_button btn_action"]').click()
+        cy.get('[data-test="continue"]').click()
         cy.get('[data-test="finish"]').click()
         cy.get('[data-test="back-to-products"]').click()
         cy.url().should('eq', 'https://www.saucedemo.com/inventory.html')
