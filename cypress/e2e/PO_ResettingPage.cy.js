@@ -7,9 +7,6 @@ describe('Test resetting page', function() {
     const product = new ShopPage()
     const navigation = new Navigation()
     beforeEach(function() {
-        cy.fixture('login').then(function(testdata) {
-            this.testdata = testdata
-        })
         cy.login('standard_user', 'secret_sauce')
     })
     it('T-01 (Verify reset app state button reset items in cart)', function() {

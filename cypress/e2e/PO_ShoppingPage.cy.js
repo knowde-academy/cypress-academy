@@ -15,9 +15,6 @@ describe('Test ShopingPage with POM', function() {
     const complete = new CompletePage()
     const item = new ProductPage()
     beforeEach(function() {
-        cy.fixture('login').then(function(testdata) {
-            this.testdata = testdata
-        })
         cy.login('standard_user', 'secret_sauce')
     })
     it('T-01 (Check results when product name is clicked)', function() {
