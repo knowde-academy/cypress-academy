@@ -139,7 +139,7 @@ describe('Shoping-page', () => {
         cy.url().should('eq', 'https://www.saucedemo.com/checkout-complete.html')
       })
 
-      it.only('T-17 (Check results when "back to home" buttos is clicked)', () => {
+      it('T-17 (Check results when "back to home" buttos is clicked)', () => {
         cy.addProduct(1)
         cy.checkout('xd', '1234', '666')
         cy.get('[data-test="continue"]').click()
